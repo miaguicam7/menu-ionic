@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {RecipeService} from '../services/recipe.service';
+import {ActivatedRoute} from '@angular/router';
+import {RecipeModel} from '../recipe/recipe.model';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -7,12 +8,12 @@ import {RecipeService} from '../services/recipe.service';
     styleUrls: ['./recipe-detail.page.scss'],
 })
 export class RecipeDetailPage implements OnInit {
-    recipe = this.recipeService.obtenerPlato(1);
+    recipe: RecipeModel;
 
-    constructor(private recipeService: RecipeService) {
+    constructor(private route: ActivatedRoute) {
+        this.recipe = this.route.snapshot.data.recipe as RecipeModel;
     }
 
     ngOnInit() {
     }
-
 }
